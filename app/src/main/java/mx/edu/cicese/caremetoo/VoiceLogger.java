@@ -45,7 +45,7 @@ public class VoiceLogger extends Activity {
 
     private String generateFileName(){
         String Filename = String.valueOf(System.currentTimeMillis());
-        return CareMeTooConfig.externalPath+"/voicelog-"+Filename+ ".m4a";
+        return CareMeTooConfig.externalVoiceLogsPath+"/voicelog-"+Filename+ ".m4a";
     }
     private void startRecording(){
         mRecorder = new MediaRecorder();
@@ -58,12 +58,12 @@ public class VoiceLogger extends Activity {
             mRecorder.prepare();
             mRecorder.start();
 
+
         }catch (IOException e){
             Log.e(LOG_TAG, "Error preparing recorder");
 
         }
         isRecording = true;
-
     }
     private void stopRecording(){
         mRecorder.stop();

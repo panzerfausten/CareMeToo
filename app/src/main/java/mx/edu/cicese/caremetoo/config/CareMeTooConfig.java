@@ -8,5 +8,7 @@ import android.os.Environment;
 public class CareMeTooConfig {
 
     public static String externalPath = Environment.getExternalStorageDirectory().getPath() + "/CareMeToo";
+    public static String externalVoiceLogsPath = externalPath + "/voice";
+
 
 }

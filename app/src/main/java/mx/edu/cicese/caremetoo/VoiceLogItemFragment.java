@@ -2,23 +2,34 @@ package mx.edu.cicese.caremetoo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 import mx.edu.cicese.caremetoo.dummy.VoiceItemList;
+import mx.edu.cicese.caremetoo.utils.VoiceLogsRetreiver;
+
+import static android.media.MediaPlayer.*;
+import static android.widget.ImageButton.*;
 
 /**
  * A fragment representing a list of Items.
@@ -86,20 +97,20 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
 
 
         data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
-        data.add(new VoiceItemList.VoiceItem("1","Grabacion 1"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 2"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 3"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 4"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 5"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 6"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 7"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 8"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 9"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 10"));
+        data.add(new VoiceItemList.VoiceItem("1","Grabacion 11"));
 
 
 
-        mAdapter = new VoiceLogAdapter(getActivity(),data);
+        mAdapter = new VoiceLogAdapter(getActivity(), VoiceLogsRetreiver.retreiveVoiceItemsList());
     }
 
     @Override
@@ -131,6 +142,7 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
     }
 
 
@@ -151,7 +163,8 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
     public void setEmptyText(CharSequence emptyText) {
         View emptyView = mListView.getEmptyView();
 
-        if (emptyView instanceof TextView) {
+        if (emptyView instanceof TextView) {d
+                
             ((TextView) emptyView).setText(emptyText);
         }
     }
@@ -171,6 +184,10 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
         public void onFragmentInteraction(String id);
     }
     public class VoiceLogAdapter extends ArrayAdapter{
+        //player options
+        public boolean isPlaying = false;
+        public MediaPlayer mplayer = null;
+
         private Context context;
         private boolean useList = true;
         private List items;
@@ -178,21 +195,22 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
             super(context,android.R.layout.activity_list_item,items);
             this.context = context;
             this.items = items;
+
         }
         private  class ViewHolder{
             TextView titleText;
         }
         public View getView(int position, View convertView, ViewGroup parent){
             ViewHolder holder = null;
-            VoiceItemList.VoiceItem item = (VoiceItemList.VoiceItem) items.get(position);
+            final VoiceItemList.VoiceItem item = (VoiceItemList.VoiceItem) items.get(position);
             LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             View viewToUse = null;
             if (convertView == null){
                 if(useList){
-                    viewToUse = mInflater.inflate(R.layout.fragment_voicelogitem_list,null);
+                    viewToUse = mInflater.inflate(R.layout.player_item,null);
 
                 }else{
-                    viewToUse = mInflater.inflate(R.layout.fragment_voicelogitem_grid,null);
+                    //viewToUse = mInflater.inflate(R.layout.fragment_voicelogitem_grid,null);
 
                 }
                 holder = new ViewHolder();
@@ -201,7 +219,35 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
             }else{
                 viewToUse = convertView;
             }
-            ((TextView) viewToUse.findViewById(R.id.voiceitem_text)).setText(item.content);
+            ((TextView) viewToUse.findViewById(R.id.record_item_name)).setText(item.content);
+            Button playButton = (Button) viewToUse.findViewById(R.id.record_play_button);
+            playButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isPlaying) {
+                        mplayer.stop();
+
+                        mplayer.release();
+                    }
+
+                    mplayer = MediaPlayer.create(getActivity(), Uri.parse(item.content));
+
+                        mplayer.start();
+                        isPlaying = true;
+                        Toast.makeText(getActivity(), "Reproduciendo", Toast.LENGTH_SHORT).show();
+                        mplayer.setOnCompletionListener(new OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                isPlaying = false;
+                                mplayer = null;
+                            }
+                        });
+
+
+
+
+                }
+            });
             return viewToUse;
         }
     }
