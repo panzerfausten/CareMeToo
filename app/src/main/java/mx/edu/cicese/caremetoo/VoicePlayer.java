@@ -1,12 +1,16 @@
 package mx.edu.cicese.caremetoo;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class VoicePlayer extends Activity {
+public class VoicePlayer extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private int mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +40,35 @@ public class VoicePlayer extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+        // update the main content by replacing fragments
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, StatusActivity.PlaceholderFragment.newInstance(position + 1))
+                .commit();
+    }
+
+    public void onSectionAttached(int number) {
+        switch (number) {
+            case 1:
+                String mTitle = getString(R.string.title_section1);
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section2);
+                break;
+
+        }
+    }
+
+    public void restoreActionBar() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(mTitle);
+    }
+
 }

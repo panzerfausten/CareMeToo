@@ -163,7 +163,7 @@ public class VoiceLogItemFragment extends Fragment implements AbsListView.OnItem
     public void setEmptyText(CharSequence emptyText) {
         View emptyView = mListView.getEmptyView();
 
-        if (emptyView instanceof TextView) {d
+        if (emptyView instanceof TextView) {
 
             ((TextView) emptyView).setText(emptyText);
         }

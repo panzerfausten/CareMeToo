@@ -10,5 +10,12 @@
     <string name="title_activity_voice_player">VoicePlayer</string>
     <string name="player_text_myvoicelogs">Mis grabaciones</string>
     <string name="listen_voicelogs">Escuchar grabaciones</string>
+    <string name="title_activity_status">Estado</string>
+    <string name="title_section1">Estado</string>
+    <string name="title_section2">Diario de voz</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
 
 </resources>
