@@ -1,6 +1,7 @@
 package mx.edu.cicese.caremetoo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,11 +24,15 @@ import java.util.List;
 
 
 public class SyncActivity extends Activity {
+     Context context = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sync);
+        context = this;
     }
 
 
@@ -53,30 +58,42 @@ public class SyncActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void sync(View v){
-        HttpClient hc = new DefaultHttpClient();
-        HttpPost hpost = new HttpPost();
-        List<BasicNameValuePair> params  = new ArrayList<BasicNameValuePair>();
-        params.add(new BasicNameValuePair("idcaregiver","1"));
-        params.add(new BasicNameValuePair("datatype","HR"));
-        params.add(new BasicNameValuePair("value","80"));
-        params.add(new BasicNameValuePair("extra","Sent from android"));
-        params.add(new BasicNameValuePair("location","11,11"));
-        params.add(new BasicNameValuePair("timestamp","2014-11-13 16:34:01"));
 
-        try {
-            hpost.setEntity(new UrlEncodedFormEntity(params));
-            try {
-                HttpResponse result = hc.execute(hpost);
-
-                String s = result.getEntity().toString();
-                Log.i("RESULT",s);
-            } catch (IOException e) {
-                Toast.makeText(this,"Error sincronizando",Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (UnsupportedEncodingException e) {
-            Toast.makeText(this,"Error en bundle",Toast.LENGTH_SHORT).show();
-        }
-
+        SyncThread.start();
     }
+    Thread SyncThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            for(int x=1;x<1000;x++){
+            HttpClient hc = new DefaultHttpClient();
+            HttpPost hpost = new HttpPost("http://158.97.91.58:5000/caregivers/1/data");
+
+            List<BasicNameValuePair> params  = new ArrayList<BasicNameValuePair>();
+            params.add(new BasicNameValuePair("idcaregiver","1"));
+            params.add(new BasicNameValuePair("datatype","HR"));
+            params.add(new BasicNameValuePair("value","80"));
+            params.add(new BasicNameValuePair("extra","Sent from android"));
+            params.add(new BasicNameValuePair("location","11,11"));
+            params.add(new BasicNameValuePair("timestamp","2014-11-13 16:34:01"));
+
+            try {
+                hpost.setEntity(new UrlEncodedFormEntity(params));
+
+                try {
+                    HttpResponse result = hc.execute(hpost);
+
+                    String s = result.getEntity().toString();
+                    Log.i("RESULT",s);
+                } catch (IOException e) {
+                    Toast.makeText(context,"Error sincronizando",Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (UnsupportedEncodingException e) {
+                Toast.makeText(context,"Error en bundle",Toast.LENGTH_SHORT).show();
+            }
+        }
+        }
+    });
+
+
 }
