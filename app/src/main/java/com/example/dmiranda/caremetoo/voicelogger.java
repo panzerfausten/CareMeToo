@@ -177,6 +177,8 @@ public class voicelogger extends Fragment {
         mRecorder = null;
         isRecording = false;
         mFileName = null;
-    }
+        startActivity(new Intent(getActivity(), EventDetailsActivity.class));
+
+        }
 
 }
