@@ -1,9 +1,107 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:orientation="vertical"
     android:layout_height="match_parent" tools:context="com.example.dmiranda.caremetoo.status">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="status" />
 
-</FrameLayout>
+    <FrameLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Pulsera"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/textView3"
+            android:layout_gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ACTIVA"
+            android:layout_marginRight="15dp"
+            android:id="@+id/textView4"
+            android:layout_gravity="right|center_vertical"
+            android:textColor="#ff23c620" />
+
+    </FrameLayout>
+    <FrameLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="HR"
+            android:layout_marginLeft="15dp"
+
+            android:layout_gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="80"
+            android:layout_marginRight="15dp"
+
+            android:layout_gravity="right|center_vertical"
+            android:textColor="#ff23c620" />
+
+    </FrameLayout>
+    <FrameLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SBR"
+            android:layout_marginLeft="15dp"
+
+            android:layout_gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="00"
+            android:layout_marginRight="15dp"
+
+            android:layout_gravity="right|center_vertical"
+            android:textColor="#ff23c620" />
+
+    </FrameLayout>
+    <FrameLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="GSR"
+            android:layout_marginLeft="15dp"
+
+            android:layout_gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21"
+            android:layout_marginRight="15dp"
+
+            android:layout_gravity="right|center_vertical"
+            android:textColor="#ff23c620" />
+
+    </FrameLayout>
+</LinearLayout>

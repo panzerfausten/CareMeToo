@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.dmiranda.caremetoo.config.SettingsActivity;
 
 
 public class MainActivity extends Activity implements voicelogger.OnFragmentInteractionListener, status.OnFragmentInteractionListener,history.OnFragmentInteractionListener {
@@ -56,10 +59,10 @@ public class MainActivity extends Activity implements voicelogger.OnFragmentInte
 
 
         // Specify that tabs should be displayed in the action bar.
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION);
 
         // Create a tab listener that is called when the user changes tabs.
-        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+        /*ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
                 mViewPager.setCurrentItem(tab.getPosition());
             }
@@ -98,7 +101,7 @@ public class MainActivity extends Activity implements voicelogger.OnFragmentInte
                         getActionBar().setSelectedNavigationItem(position);
                     }
                 });
-
+*/
     }
 
 
@@ -118,6 +121,7 @@ public class MainActivity extends Activity implements voicelogger.OnFragmentInte
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             return true;
         }
 

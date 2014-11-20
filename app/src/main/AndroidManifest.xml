@@ -24,6 +24,10 @@
             android:name="com.example.dmiranda.caremetoo.EventDetailsActivity"
             android:label="@string/title_activity_event_details" >
         </activity>
+        <activity
+            android:name="com.example.dmiranda.caremetoo.config.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
