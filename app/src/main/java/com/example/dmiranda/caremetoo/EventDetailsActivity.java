@@ -1,10 +1,13 @@
 package com.example.dmiranda.caremetoo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +16,21 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+
+import cicese.edu.caremetooAPI.ApiObject;
+import cicese.edu.caremetooAPI.Data;
+import cicese.edu.caremetooAPI.Event;
 
 
 public class EventDetailsActivity extends Activity {
+    Context mContext = null;
     final SeekBar SEEKBAR = null;
     final TextView SUDSTextView = null;
     final TextView SUDSValueTextView = null;
@@ -49,6 +62,7 @@ public class EventDetailsActivity extends Activity {
         activityButtons.add(activity4ImageButton);
         activityButtons.add(activity5ImageButton);
         activityButtons.add(activity6ImageButton);
+        mContext = getApplicationContext();
         SEEKBAR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -135,6 +149,56 @@ public class EventDetailsActivity extends Activity {
         });
         setActivityclicks();
         initSeekBar();
+        testService();
+    }
+    private void testService(){
+        final android.os.Handler h = new android.os.Handler(Looper.getMainLooper()){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.obj != null) {
+                    Event d = (Event) msg.obj;
+                    Toast.makeText(mContext, d.getDESCRIPTION(), Toast.LENGTH_SHORT).show();
+                }else{
+                    switch (msg.what){
+                        case -1:Toast.makeText(mContext,"IOERROR",Toast.LENGTH_LONG).show();
+                        break;
+                        case -2:Toast.makeText(mContext,"JSONERROR",Toast.LENGTH_LONG).show();
+                        break;
+                    }
+
+
+                }
+            }
+        };
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Event ee = new Event();
+
+                   // Data receivedData = (Data) d.getById(102050);
+                    //Message msg = new Message();
+                    //msg.obj = receivedData;
+                    //h.sendMessage(msg);
+
+                //Data dataToSave = new Data(1,1,"HR","100","Muy emocionado!!","31.842839, -116.600777","2014-12-01 18:30:00");
+                Event eventToSave = new Event(1,1,-1,"Feeding","70","Estaba ayudando a papa cuando se puso de malas",
+                        "2014-12-01 19:03:00");
+                try {
+                    Event receivedData = (Event) ee.save(eventToSave);
+                    Message msg = new Message();
+                    msg.obj = receivedData;
+                    h.sendMessage(msg);
+                } catch (IOException e) {
+                    h.sendEmptyMessage(-1);
+
+                } catch (JSONException e) {
+                    h.sendEmptyMessage(-2);
+                }
+
+            }
+        });
+        t.start();
+
     }
     private void setActivityclicks(){
 
