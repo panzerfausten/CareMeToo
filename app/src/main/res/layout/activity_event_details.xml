@@ -99,36 +99,43 @@
             android:layout_height="match_parent"
             android:id="@+id/activity1"
             android:background="#ffffff"
-            android:src="@drawable/dressing" />
+            android:src="@drawable/dressing"
+            android:tag="dressing"
+            />
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:id="@+id/activity2"
             android:background="#ffffff"
+            android:tag="feeding"
             android:src="@drawable/feeding" />
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:id="@+id/activity3"
             android:background="#ffffff"
+            android:tag="medicine"
             android:src="@drawable/medicine" />
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:id="@+id/activity4"
             android:background="#ffffff"
+            android:tag="showering"
             android:src="@drawable/showering" />
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:id="@+id/activity5"
             android:background="#ffffff"
+            android:tag="talking"
             android:src="@drawable/talking" />
         <ImageButton
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:id="@+id/activity6"
             android:background="#ffffff"
+            android:tag="restroom"
             android:src="@drawable/restroom" />
     </LinearLayout>
  </HorizontalScrollView>
@@ -151,13 +158,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:id="@+id/editText" />
+        android:id="@+id/noteEditText" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/button2"
+        android:onClick="save_click"
         android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
