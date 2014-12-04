@@ -29,6 +29,8 @@
             android:name="com.example.dmiranda.caremetoo.config.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <service android:name="cicese.edu.caremetoo.services.SyncService"
+            ></service>
     </application>
 
 </manifest>

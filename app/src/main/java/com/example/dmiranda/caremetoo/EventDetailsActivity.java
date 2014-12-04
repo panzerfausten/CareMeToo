@@ -27,6 +27,7 @@ import java.util.logging.LogRecord;
 import cicese.edu.caremetooAPI.ApiObject;
 import cicese.edu.caremetooAPI.Data;
 import cicese.edu.caremetooAPI.Event;
+import cicese.edu.cicese.edu.caremetoo.db.MySQLiteHelper;
 
 
 public class EventDetailsActivity extends Activity {
@@ -150,6 +151,7 @@ public class EventDetailsActivity extends Activity {
         setActivityclicks();
         initSeekBar();
         testService();
+        createDataBase();
     }
     private void testService(){
         final android.os.Handler h = new android.os.Handler(Looper.getMainLooper()){
@@ -199,6 +201,16 @@ public class EventDetailsActivity extends Activity {
         });
         t.start();
 
+    }
+    private void createDataBase(){
+        MySQLiteHelper db = new MySQLiteHelper(this);
+        try {
+            db.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            db.close();
+        }
     }
     private void setActivityclicks(){
 

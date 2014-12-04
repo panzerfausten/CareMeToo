@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cicese.edu.caremetoo.services.SyncService;
+
 /**
  * Created by dmiranda on 12/2/14.
  */
@@ -99,6 +101,8 @@ public class Data extends ApiObject implements  ApiInterface {
         this.LOCATION = location;
         this.TIMESTAMP = timestamp;
         ApiClient = new DefaultHttpClient();
+        SyncService s = new SyncService();
+
     }
     @Override
     public ApiObject save(ApiObject apiObject) throws IOException, JSONException {
