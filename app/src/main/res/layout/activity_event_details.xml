@@ -26,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textColor="#0099cc"
+        android:textColor="#35548E"
         android:layout_alignParentEnd="true" />
 
 
@@ -34,7 +34,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#0099cc" />
+        android:background="#35548E" />
 
 
     <TextView
@@ -74,12 +74,12 @@
         android:id="@+id/textView_activity"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textColor="#0099cc"
+        android:textColor="#35548E"
         android:layout_alignParentEnd="true" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#0099cc" />
+        android:background="#35548E" />
  <HorizontalScrollView
      android:layout_width="match_parent"
      android:layout_height="64dp"
@@ -147,18 +147,19 @@
         android:id="@+id/textView_note"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textColor="#0099cc"
+        android:textColor="#35548E"
         android:layout_alignParentEnd="true" />
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#0099cc" />
+        android:background="#35548E" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:id="@+id/noteEditText" />
+        android:id="@+id/noteEditText"
+        android:lines="3" />
 
     <Button
         android:layout_width="match_parent"

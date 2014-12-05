@@ -241,7 +241,7 @@ public class EventDetailsActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 
-                    v.setBackgroundColor(Color.parseColor("#0099cc"));
+                    v.setBackgroundColor(Color.parseColor("#5485E1"));
 
                     for(ImageButton ii : activityButtons){
                         if (i != ii){
