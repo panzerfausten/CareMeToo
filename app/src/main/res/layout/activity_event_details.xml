@@ -5,7 +5,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.dmiranda.caremetoo.EventDetailsActivity">
+    tools:context="com.example.dmiranda.caremetoo.EventDetailsActivity"
+
+    android:weightSum="1">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+>
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-
+        android:textColor="#0099cc"
         android:layout_alignParentEnd="true" />
 
 
@@ -23,12 +34,38 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#ff000000" />
-    <LinearLayout
+        android:background="#0099cc" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:paddingTop="15dp"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/SUDSTexview"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+
+        android:id="@+id/SUDSTexviewValue"
+        android:layout_gravity="center_horizontal" />
+
+
+    <SeekBar
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_gravity="center_horizontal"></LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/suds_seekbar"
+        android:max="10"></SeekBar>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,18 +74,64 @@
         android:id="@+id/textView_activity"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-
+        android:textColor="#0099cc"
         android:layout_alignParentEnd="true" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#ff000000" />
+        android:background="#0099cc" />
+ <HorizontalScrollView
+     android:layout_width="match_parent"
+     android:layout_height="64dp"
+
+     >
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_gravity="center_horizontal"></LinearLayout>
+        android:layout_height="64dp"
 
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity1"
+            android:background="#ffffff"
+            android:src="@drawable/dressing" />
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity2"
+            android:background="#ffffff"
+            android:src="@drawable/feeding" />
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity3"
+            android:background="#ffffff"
+            android:src="@drawable/medicine" />
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity4"
+            android:background="#ffffff"
+            android:src="@drawable/showering" />
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity5"
+            android:background="#ffffff"
+            android:src="@drawable/talking" />
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/activity6"
+            android:background="#ffffff"
+            android:src="@drawable/restroom" />
+    </LinearLayout>
+ </HorizontalScrollView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,11 +140,29 @@
         android:id="@+id/textView_note"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-
+        android:textColor="#0099cc"
         android:layout_alignParentEnd="true" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#0099cc" />
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:id="@+id/editText" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+
+
+
+
