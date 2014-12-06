@@ -8,9 +8,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.ContactsContract;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -27,6 +31,8 @@ import java.util.logging.LogRecord;
 import cicese.edu.caremetooAPI.ApiObject;
 import cicese.edu.caremetooAPI.Data;
 import cicese.edu.caremetooAPI.Event;
+import cicese.edu.cicese.edu.caremetoo.DAO.DataDAO;
+import cicese.edu.cicese.edu.caremetoo.DAO.EventDAO;
 import cicese.edu.cicese.edu.caremetoo.db.MySQLiteHelper;
 
 
@@ -44,6 +50,10 @@ public class EventDetailsActivity extends Activity {
 
     List<ImageButton> activityButtons = new ArrayList<ImageButton>();
     ImageButton selectedActivity = null;
+
+    int SEEKVALUE = 0;
+
+    EditText noteEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +74,12 @@ public class EventDetailsActivity extends Activity {
         activityButtons.add(activity5ImageButton);
         activityButtons.add(activity6ImageButton);
         mContext = getApplicationContext();
+        noteEditText = (EditText) findViewById(R.id.noteEditText);
         SEEKBAR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 //                Toast.makeText(getApplicationContext(),String.valueOf(progress),Toast.LENGTH_SHORT).show();
+                SEEKVALUE = progress;
                   String SUDSLegendString = "";
                   String SUDSValueString = "";
                 float[] hsvColor = {0, 1, 1};
@@ -148,11 +160,21 @@ public class EventDetailsActivity extends Activity {
 
             }
         });
+        SEEKBAR.setProgress(0);
         setActivityclicks();
         initSeekBar();
         testService();
         createDataBase();
+        testDataBase();
     }
+
+    private void testDataBase() {
+        DataDAO dDao = new DataDAO(getApplicationContext());
+        Data d = new Data(-1,1,"HR","90","Extra extra","31,31","2014-12-04 09:55:00");
+        dDao.save(d);
+
+    }
+
     private void testService(){
         final android.os.Handler h = new android.os.Handler(Looper.getMainLooper()){
             @Override
@@ -219,7 +241,7 @@ public class EventDetailsActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 
-                    v.setBackgroundColor(Color.parseColor("#0099cc"));
+                    v.setBackgroundColor(Color.parseColor("#5485E1"));
 
                     for(ImageButton ii : activityButtons){
                         if (i != ii){
@@ -261,4 +283,26 @@ public class EventDetailsActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void save_click(View v){
+
+        String NoteString = (String) noteEditText.getText().toString();
+        Event e = new Event(-1,1,-1,selectedActivity.getTag().toString(), String.valueOf(SEEKVALUE*10),
+                NoteString,getTimeStamp());
+
+        EventDAO eventDAO = new EventDAO(mContext);
+        eventDAO.save(e);
+
+        List<ApiObject> events = eventDAO.getAll();
+        for(ApiObject o : events){
+            Event event = (Event) o;
+            Log.i("CAREMETOODB",event.getACTIVITY() + "  " + event.getMOOD() + "  " + event.getTIMESTAMP());
+        }
+    }
+    public static String getTimeStamp() {
+        Time now = new Time();
+        now.setToNow();
+        String sTime = now.format("%Y-%m-%d %H:%M:%S");
+        return sTime;
+    }
+
 }

@@ -8,13 +8,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/caremetoo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CareMeTooActionBarTheme" >
         <activity
             android:name="com.example.dmiranda.caremetoo.MainActivity"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name="com.example.dmiranda.caremetoo.EventDetailsActivity"
@@ -29,8 +28,18 @@
             android:name="com.example.dmiranda.caremetoo.config.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
-        <service android:name="cicese.edu.caremetoo.services.SyncService"
-            ></service>
+
+        <service android:name="cicese.edu.caremetoo.services.SyncService" />
+
+        <activity
+            android:name="com.example.dmiranda.caremetoo.EventHistoryActivity"
+            android:label="@string/title_activity_event_history" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
