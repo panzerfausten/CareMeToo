@@ -8,26 +8,45 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.22"
-        android:weightSum="1">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="New Button"
-            android:id="@+id/button3" />
+        android:weightSum="1"
+        android:layout_weight="0.05"
+        android:background="#ffffffff">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_gravity="center_vertical">
 
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:margin_left="5dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/dressing" />
+
             <TextView
-                android:layout_width="238dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
+                android:text="5/Dic/2014"
                 android:id="@+id/textView5"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="16:20:00"
+                android:id="@+id/textView6"
+                android:layout_gravity="center_horizontal|bottom" />
+
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="80"
+                android:id="@+id/textView7"
                 android:layout_gravity="right|center_vertical" />
         </FrameLayout>
     </LinearLayout>

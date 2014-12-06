@@ -22,8 +22,6 @@
     <string name="title_activity_sync">SyncActivity</string>
     <string name="title_activity_event_details">Editar evento</string>
     <string name="note_textview">NOTAS</string>
-
-
     <string name="suds_zero">Totalmente relajado</string>
     <string name="suds_one">Alerta y despierto, me concentro bien</string>
     <string name="suds_two">Ansiedad o angustia minima</string>
@@ -35,7 +33,6 @@
     <string name="suds_eight">Muy ansioso o angustiado, no me puedo concentrar.</string>
     <string name="suds_nine">Extremadamente ansioso o angustiado</string>
     <string name="suds_ten">La ansiedad, miedo, o malestar mas grande que he sentido.</string>
-
     <string name="suds_value_zero">00</string>
     <string name="suds_value_one">10</string>
     <string name="suds_value_two">20</string>
@@ -47,4 +44,6 @@
     <string name="suds_value_eight">80</string>
     <string name="suds_value_nine">90</string>
     <string name="suds_value_ten">100</string>
+    <string name="title_activity_event_history">EventHistoryActivity</string>
+
 </resources>
