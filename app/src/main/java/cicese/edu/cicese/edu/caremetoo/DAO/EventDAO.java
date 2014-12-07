@@ -57,7 +57,7 @@ public class EventDAO implements  CMDAOInterface{
     public List<ApiObject> getAll() {
         SQLiteDatabase readableDatabase = dbHelper.getReadableDatabase();
         List<ApiObject> events = new ArrayList<ApiObject>();
-        Cursor cursor = readableDatabase.rawQuery("SELECT * FROM event", new String [] {});
+        Cursor cursor = readableDatabase.rawQuery("SELECT * FROM event ORDER by timestamp DESC", new String [] {});
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
             events.add(cursorToEvent(cursor));

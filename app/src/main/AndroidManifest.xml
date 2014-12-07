@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/caremetoo"
+        android:icon="@drawable/caremetoo_big"
         android:label="@string/app_name"
         android:theme="@style/CareMeTooActionBarTheme" >
         <activity
@@ -18,11 +18,12 @@
         <activity
             android:name="com.example.dmiranda.caremetoo.EventDetailsActivity"
             android:label="@string/title_activity_event_details" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.example.dmiranda.caremetoo.EventHistoryActivity"
+        >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </meta-data>
         </activity>
         <activity
             android:name="com.example.dmiranda.caremetoo.config.SettingsActivity"
@@ -34,11 +35,7 @@
         <activity
             android:name="com.example.dmiranda.caremetoo.EventHistoryActivity"
             android:label="@string/title_activity_event_history" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.dmiranda.caremetoo.WelcomeActivity"

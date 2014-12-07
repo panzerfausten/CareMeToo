@@ -163,10 +163,21 @@ public class EventDetailsActivity extends Activity {
         SEEKBAR.setProgress(0);
         setActivityclicks();
         initSeekBar();
-        testService();
+        //testService();
         createDataBase();
-        testDataBase();
+        //testDataBase();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //TODO:Do you want to save it?
+
+    }
+
+
 
     private void testDataBase() {
         DataDAO dDao = new DataDAO(getApplicationContext());
@@ -279,7 +290,11 @@ public class EventDetailsActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if (id == R.id.home || id  == R.id.homeAsUp){
+            finishActivity(EventHistoryActivity.CREATENEWEVENT);
+            return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
